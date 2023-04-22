@@ -31,6 +31,7 @@ export default function Login({navigation}) {
   function handleSingIn(data){
    console.log("Entrou");
    console.log(data);
+   
    navigation.reset({
    index:0,
     routes: [{name:"Home"}]
@@ -39,16 +40,20 @@ export default function Login({navigation}) {
 
   function handlePrimeiroAcesso(){
    console.log("Cadastrar Usuario");
-   navigation.reset({
-    routes: [{name:"Cadastro"}]
-   })
+   
+   navigation.navigate("Cadastro")
+  //  navigation.reset({
+  //   routes: [{name:"Cadastro"}]
+  //  })
   }
 
   function handleEsqueceuSuaSenha(){
     console.log("Esqueceu Sua Senha");
-    navigation.reset({
-      routes: [{name:"RecuperarSenha"}]
-     })
+    
+   navigation.navigate("RecuperarSenha")
+    // navigation.reset({
+    //   routes: [{name:"RecuperarSenha"}]
+    //  })
   }
 
 

@@ -8,46 +8,53 @@ export default function Home({navigation}) {
     function handleAbrirChamado(data){
         console.log("Entrou");
         console.log(data);
-        navigation.reset({
-        index:0,
-         routes: [{name:"AbrirChamado"}]
-        })  
+        navigation.navigate("AbrirChamado")
+        // navigation.reset({
+        // index:0,
+        //  routes: [{name:"AbrirChamado"}]
+        // })  
        }
 
        function handleListaChamados(data){
         console.log("Entrou");
         console.log(data);
-        navigation.reset({
-        index:0,
-         routes: [{name:"ListaChamados"}]
-        })  
+        navigation.navigate("ListaChamados")
+        // navigation.reset({
+        // index:0,
+        //  routes: [{name:"ListaChamados"}]
+        // })  
        }
 
        function handleRelatorioChamados(data){
         console.log("Entrou");
         console.log(data);
-        navigation.reset({
-        index:0,
-         routes: [{name:"RelatorioChamados"}]
-        })  
+        
+        navigation.navigate("RelatorioChamados")
+        // navigation.reset({
+        // index:0,
+        //  routes: [{name:"RelatorioChamados"}]
+        // })  
        }
 
        function handleAdicionarUsuario(data){
         console.log("Entrou");
         console.log(data);
-        navigation.reset({
-        index:0,
-         routes: [{name:"AdicionarUsuario"}]
-        })  
+        
+        navigation.navigate("AdicionarUsuario")
+        // navigation.reset({
+        // index:0,
+        //  routes: [{name:"AdicionarUsuario"}]
+        // })  
        }
 
        function handleConfiguracao(data){
         console.log("Entrou");
         console.log(data);
-        navigation.reset({
-        index:0,
-         routes: [{name:"Configuracao"}]
-        })  
+        navigation.navigate("Configuracao")
+        // navigation.reset({
+        // index:0,
+        //  routes: [{name:"Configuracao"}]
+        // })  
        }
    return (
 
@@ -57,7 +64,9 @@ export default function Home({navigation}) {
        <ScrollView>
 
            <View style={styles.containerMenu}>
-                <TouchableOpacity style={styles.butom} onPress={handleAbrirChamado}>
+                <TouchableOpacity 
+                style={styles.butom} 
+                onPress={handleAbrirChamado}>
                     <Image source={require('../../assets/imagens/addchamado.png')} 
                         style={styles.buttonImageIconStyle} 
                     /> 
@@ -67,7 +76,9 @@ export default function Home({navigation}) {
                
 
             <View style={styles.containerMenu}>
-                <TouchableOpacity style={styles.butom} onPress={handleListaChamados}>
+                <TouchableOpacity 
+                style={styles.butom} 
+                onPress={handleListaChamados}>
                     <Image source={require('../../assets/imagens/listachamados.png')} 
                         style={styles.buttonImageIconStyle} 
                     /> 
@@ -77,7 +88,9 @@ export default function Home({navigation}) {
 
 
              <View style={styles.containerMenu}>
-                <TouchableOpacity style={styles.butom} onPress={handleRelatorioChamados}>
+                <TouchableOpacity 
+                style={styles.butom} 
+                onPress={handleRelatorioChamados}>
                     <Image source={require('../../assets/imagens/relatorio.png')} 
                         style={styles.buttonImageIconStyle} 
                     /> 
@@ -87,18 +100,22 @@ export default function Home({navigation}) {
 
 
 
-            <View style={styles.containerMenu}>
-                <TouchableOpacity style={styles.butom} onPress={handleAdicionarUsuario}>
+            {/* <View style={styles.containerMenu}>
+                <TouchableOpacity 
+                style={styles.butom} 
+                onPress={handleAdicionarUsuario}>
                     <Image source={require('../../assets/imagens/addusuario.png')} 
                         style={styles.buttonImageIconStyle} 
                     /> 
                     <Text style={styles.textoIcon}>Adicionar Usuario</Text>
                 </TouchableOpacity>
-            </View>
+            </View> */}
 
 
             <View style={styles.containerMenu}>
-               <TouchableOpacity style={styles.butom} onPress={handleConfiguracao}>
+               <TouchableOpacity 
+               style={styles.butom} 
+               onPress={handleConfiguracao}>
                     <Image source={require('../../assets/imagens/config.png')} 
                         style={styles.buttonImageIconStyle} 
                     /> 

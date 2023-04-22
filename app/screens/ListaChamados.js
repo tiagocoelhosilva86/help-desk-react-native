@@ -1,149 +1,203 @@
 import React from "react";
-import { StyleSheet , View, Text, TextInput, TouchableOpacity } from "react-native";
+import { StyleSheet , View, Text, ScrollView} from "react-native";
 
-import { useForm, Controller } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-
-
-const schema = yup.object({
-    
-    nome: yup.string().required("Informe Seu Nome"),
-    email: yup.string().required("Informe Seu Email"),
-    usuario: yup.string().required("Informe Seu Nome De Usuário"),
-    senha: yup.string().required("Informe Sua Senha"),
-    confirmasenha: yup.string().required("Repita Sua Senha"),
-})
-
-  
 
 export default function ListaChamados({navigation}) {
 
-    const { control, handleSubmit, formState: { errors } } = useForm ({
-        resolver: yupResolver(schema)
-    })
+  const chamados = [
+    {prioridade: 'Alta', setor: 'Rh', chamado: 'Computador Não liga', data: '01/04/2023'
+  },{
+    prioridade: 'Baixa', setor: 'Administartivo', chamado: 'Impressora Não Imprime', data: '03/04/2023'
+  },{
+    prioridade: 'Alta', setor: 'Copa', chamado: 'Relogio De ponto', data: '03/04/2023'
+  },{
+    prioridade: 'Baixa', setor: 'Administartivo', chamado: 'Impressora Não Imprime', data: '03/04/2023'
+  },{
+    prioridade: 'Alta', setor: 'Produção', chamado: 'Modem Não Funciona', data: '05/04/2023'
+  },{
+    prioridade: 'baixa', setor: 'Manutenção', chamado: 'Telefone Não Funciona', data: '10/04/2023'
+  }];
+
+
     
     function handleSingIn(data){
         console.log("Entrou");
         console.log(data);
-        navigation.reset({
-        index:2,
-        routes: [{name:"Login"}]
-        })  
+        navigation.navigate("Login")  
     }
 
    return (
     <View style={styles.container}>
 
-        <Text>Em construçao Lista de Chamados</Text>
-        {/* <View style={styles.containerForm}>
-        <Text style={styles.title}>Registre-Se</Text>
-            <Controller 
-                control={control}
-                name="nome"
-                render={({ field: { onChange, onBlur, value} }) =>(
-                <TextInput
+     <ScrollView>
+        <View style={styles.containerForm}>
+           <Text style={styles.title}> Lista de Chamados</Text>
+        </View>
 
-                style={[
-                styles.input, {
-                    borderWidth: errors.nome && 1,
-                    borderColor: errors.nome && '#ff375b'
-                }]}
-                onChangeText={onChange}
-                onBlur={onBlur}//chamado quando o textinput é tocado.
-                value={value}
-                placeholder="Digite Seu Nome"
+        <View style={styles.item}>
+            <View style={styles.itemChamados}>
+
+              <View style={styles.containerPrioridade}>
+                <Text style={styles.textoPrioridades}>Prioridade:</Text> 
+              <View style={styles.quadradoVermelho}> 
+                <Text>{'Alta'}</Text>   
+                </View>
+              </View>
+
+              <View style={styles.containerPrioridades}>
+                <Text style={styles.textoPrioridades}>Setor: Rh</Text>
+                <Text style={styles.textoPrioridades}>chamado: Computador Não liga</Text>
+                <Text style={styles.textoPrioridades}>Data de Abertura: 01/04/2023</Text>
                 
-                />
-                )}
-            />
-            {errors.nome && <Text style={styles.labelError}>{errors.nome?.message}</Text>}
-            <Controller 
-                control={control}
-                name="email"
-                render={({ field: { onChange, onBlur, value} }) =>(
-                <TextInput
+                <View style={styles.containerPrioridade}>
+                  <Text style={styles.textoPrioridades}>Chamado: </Text> 
+                <View > 
+                  <Text style={styles.textoPrioridades}>{'Aguardando Atendimento'}</Text>   
+                  </View>
+                </View>
+              </View>
+ 
+            </View>
 
-                style={[
-                styles.input, {
-                    borderWidth: errors.email && 1,
-                    borderColor: errors.email && '#ff375b'
-                }]}
-                onChangeText={onChange}
-                onBlur={onBlur}//chamado quando o textinput é tocado.
-                value={value}
-                placeholder="Digite Seu Email"
+        </View>
+
+        <View style={styles.item}>
+            <View style={styles.itemChamados}>
+              
+              <View style={styles.containerPrioridade}>
+                <Text style={styles.textoPrioridades}>Prioridade:</Text> 
+              <View style={styles.quadradoLaranja}> 
+                <Text>{'Baixa'}</Text>   
+                </View>
+              </View>
+
+              <View style={styles.containerPrioridades}>
+                <Text style={styles.textoPrioridades}>Setor: Administartivo</Text>
+                <Text style={styles.textoPrioridades}>chamado: Impressora Não Imprime</Text>
+                <Text style={styles.textoPrioridades}>Data de Abertura: 03/04/2023</Text>
                 
-                />
-                )}
-            />
-            {errors.email && <Text style={styles.labelError}>{errors.email?.message}</Text>}
-            <Controller 
-                control={control}
-                name="usuario"
-                render={({ field: { onChange, onBlur, value} }) =>(
-                <TextInput
+                <View style={styles.containerPrioridade}>
+                  <Text style={styles.textoPrioridades}>Chamado: </Text> 
+                <View > 
+                  <Text style={styles.textoPrioridades}>{'Aguardando Atendimento'}</Text>   
+                  </View>
+                </View>
+              </View>
+ 
+            </View>
 
-                style={[
-                styles.input, {
-                    borderWidth: errors.usuario && 1,
-                    borderColor: errors.usuario && '#ff375b'
-                }]}
-                onChangeText={onChange}
-                onBlur={onBlur}//chamado quando o textinput é tocado.
-                value={value}
-                placeholder="Digite Seu Nome De Usuário"
+        </View>
+
+        <View style={styles.item}>
+            <View style={styles.itemChamados}>
+              
+              <View style={styles.containerPrioridade}>
+                <Text style={styles.textoPrioridades}>Prioridade:</Text> 
+              <View style={styles.quadradoVermelho}> 
+                <Text>{'Alta'}</Text>   
+                </View>
+              </View>
+
+              <View style={styles.containerPrioridades}>
+                <Text style={styles.textoPrioridades}>Setor: Copa</Text>
+                <Text style={styles.textoPrioridades}>chamado: Relogio De ponto</Text>
+                <Text style={styles.textoPrioridades}>Data de Abertura: 03/04/2023</Text>
                 
-                />
-                )}
-            />
-            {errors.usuario && <Text style={styles.labelError}>{errors.usuario?.message}</Text>}
-            <Controller 
-                control={control}
-                name="senha"
-                render={({ field: { onChange, onBlur, value} }) =>(
-                <TextInput
+                <View style={styles.containerPrioridade}>
+                  <Text style={styles.textoPrioridades}>Chamado: </Text> 
+                <View > 
+                  <Text style={styles.textoPrioridades}>{'Aguardando Atendimento'}</Text>   
+                  </View>
+                </View>
+              </View>
+ 
+            </View>
 
-                style={[
-                styles.input, {
-                    borderWidth: errors.senha && 1,
-                    borderColor: errors.senha && '#ff375b'
-                }]}
-                onChangeText={onChange}
-                onBlur={onBlur}//chamado quando o textinput é tocado.
-                value={value}
-                placeholder="Digite Sua Senha"
-                secureTextEntry={true}
-                />
-                )}
-            />
-            {errors.criarsenha && <Text style={styles.labelError}>{errors.criarsenha?.message}</Text>}
-            <Controller 
-                control={control}
-                name="confirmasenha"
-                render={({ field: { onChange, onBlur, value} }) =>(
-                <TextInput
+        </View>
 
-                style={[
-                styles.input, {
-                    borderWidth: errors.confirmasenha && 1,
-                    borderColor: errors.confirmasenha && '#ff375b'
-                }]}
-                onChangeText={onChange}
-                onBlur={onBlur}//chamado quando o textinput é tocado.
-                value={value}
-                placeholder="Repita Sua Senha"
-                secureTextEntry={true}
-                />
-                )}
-            />
-            {errors.confirmasenha && <Text style={styles.labelError}>{errors.confirmasenha?.message}</Text>}
+        <View style={styles.item}>
+            <View style={styles.itemChamados}>
+              
+              <View style={styles.containerPrioridade}>
+                <Text style={styles.textoPrioridades}>Prioridade:</Text> 
+              <View style={styles.quadradoLaranja}> 
+                <Text>{'Baixa'}</Text>   
+                </View>
+              </View>
 
-            <TouchableOpacity style={styles.button} onPress={handleSubmit(handleSingIn)}>
-                    <Text style={styles.titleInputRegistrar}>Registrar</Text>
-            </TouchableOpacity>
-        </View> */}
-            
+              <View style={styles.containerPrioridades}>
+                <Text style={styles.textoPrioridades}>Setor: Administartivo</Text>
+                <Text style={styles.textoPrioridades}>chamado: Impressora Não Imprime</Text>
+                <Text style={styles.textoPrioridades}>Data de Abertura: 03/04/2023</Text>
+                
+                <View style={styles.containerPrioridade}>
+                  <Text style={styles.textoPrioridades}>Chamado: </Text> 
+                <View > 
+                  <Text style={styles.textoPrioridades}>{'Aguardando Atendimento'}</Text>   
+                  </View>
+                </View>
+              </View>
+ 
+            </View>
+
+        </View>
+
+        <View style={styles.item}>
+            <View style={styles.itemChamados}>
+              
+              <View style={styles.containerPrioridade}>
+                <Text style={styles.textoPrioridades}>Prioridade:</Text> 
+              <View style={styles.quadradoVermelho}> 
+                <Text>{'Alta'}</Text>   
+                </View>
+              </View>
+
+              <View style={styles.containerPrioridades}>
+                <Text style={styles.textoPrioridades}>Setor: Produção</Text>
+                <Text style={styles.textoPrioridades}>chamado: Modem Não Funciona</Text>
+                <Text style={styles.textoPrioridades}>Data de Abertura: 05/04/2023</Text>
+                
+                <View style={styles.containerPrioridade}>
+                  <Text style={styles.textoPrioridades}>Chamado: </Text> 
+                <View > 
+                  <Text style={styles.textoPrioridades}>{'Aguardando Atendimento'}</Text>   
+                  </View>
+                </View>
+              </View>
+ 
+            </View>
+
+        </View>
+
+        <View style={styles.item}>
+            <View style={styles.itemChamados}>
+              
+              <View style={styles.containerPrioridade}>
+                <Text style={styles.textoPrioridades}>Prioridade:</Text> 
+              <View style={styles.quadradoLaranja}> 
+                <Text>{'Baixa'}</Text>   
+                </View>
+              </View>
+
+              <View style={styles.containerPrioridades}>
+                <Text style={styles.textoPrioridades}>Setor: Manutenção</Text>
+                <Text style={styles.textoPrioridades}>chamado: Telefone Não Funciona</Text>
+                <Text style={styles.textoPrioridades}>Data de Abertura: 10/04/2023</Text>
+                
+                <View style={styles.containerPrioridade}>
+                  <Text style={styles.textoPrioridades}>Chamado: </Text> 
+                <View > 
+                  <Text style={styles.textoPrioridades}>{'Aguardando Atendimento'}</Text>   
+                  </View>
+                </View>
+              </View>
+ 
+            </View>
+
+        </View>
+
+     </ScrollView>  
+        
     </View>
     )
 }
@@ -154,17 +208,97 @@ const styles = StyleSheet.create({
       justifyContent:"center",
       height:"100%",
     },
-    imageBackground: {
-      flex: 3,
-      resizeMode: "cover",
-      width:"100%",
-    },
     title:{
-      fontSize:34,
+      marginTop:10,
+      fontSize:24,
       marginBottom:34,
       color:'rgba(18, 70, 255, 1)',
       fontWeight: 'bold'
     },
+    item:{
+      backgroundColor:'#FFF',
+      borderRadius:10,
+      flexDirection: 'row-reverse',
+      justifyContent:"center",
+      marginBottom:15,
+      margin:10,
+      shadowColor: "#000",
+      shadowOffset: {
+	    width: 0,
+	    height: 8,
+      },
+      shadowOpacity: 0.46,
+      shadowRadius: 10.68,
+      elevation: 16,
+  },
+  itemChamados:{
+    marginTop:10,
+    flexDirection:'column',
+    flexWrap:"wrap"
+    
+  },
+  quadradoVermelho:{
+      width:"40%",
+      backgroundColor:'#ff0000',
+      opacity: 0.9,
+      borderRadius:5,
+      marginRight:5,
+      alignItems:'center',
+  },
+  quadradoVermelhoChamado:{
+    width:"auto",
+    backgroundColor:'#ff0000',
+    opacity: 0.9,
+    borderRadius:5,
+    marginRight:5,
+    alignItems:'center',
+},
+  quadradoLaranja:{
+    width:"40%",
+    backgroundColor:'#f7ff00',
+    opacity: 0.9,
+    borderRadius:5,
+    marginRight:5,
+    alignItems:'center',
+},
+quadradoVerde:{
+  backgroundColor:'#00ff00',
+  opacity: 0.9,
+  borderRadius:5,
+  marginRight:5,
+  alignItems:'center',
+},
+containerPrioridade:{
+  flexDirection: 'row',
+  marginBottom: 3,
+},
+
+containerPrioridades:{
+  flexDirection: 'column',
+  
+  
+},
+
+textoPrioridades: {
+  fontWeight: 'bold',
+  fontSize:12,
+marginBottom: 3,
+  
+},
+
+  textoTitulo:{
+    flex:1,
+    flexDirection:'row',
+    alignItems:'center',
+    flexWrap:"wrap"
+
+  },
+  ImageIconStyle:{
+    marginRight:6,
+    height:30,
+    width:30,
+  },
+
     containerForm: {
       flex: 1,
       justifyContent:'center',
@@ -172,41 +306,5 @@ const styles = StyleSheet.create({
       borderColor: 'black',
       
     },
-    input: {
-      width:"90%",
-      height:40,
-      backgroundColor:'#FFFFFF',
-      paddingHorizontal: 8,
-      marginBottom: 8,
-      borderWidth: 2,
-      borderRadius: 12,
-      color:'#121212',
-      margin:'5%',
-    },
-    titleInput: {
-      color:'rgba(18, 70, 255, 1)',
-      fontSize:16,
-      
-    },
-    Text: {
-      marginTop: "7%",
-      color:'#121212',
-    },
-    button: {
-      marginTop:"7%",
-      backgroundColor:'rgba(18, 70, 255, 1)',
-      width:"60%",
-      height:40,
-      borderRadius: 7,
-      justifyContent:'center',
-      alignItems:"center",
-    },
-    labelError:{
-      alignSelf:'flex-start',
-      color:'#ff375b',
-      marginBottom: 8,
-    },
-    titleInputRegistrar:{
-      color:'#FFF',
-    }
+
   });

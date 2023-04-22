@@ -12,6 +12,7 @@ import SenhaRecuperada from "./screens/SenhaRecuperada";
 import ListaChamados from "./screens/ListaChamados";
 import RelatorioChamados from "./screens/RelatorioChamados";
 import ChamadoMsgConfirmacao from "./screens/ChamadoMsgConfir";
+import Popup from "./screens/Popup";
 import { BackHandler } from "react-native";
 
 const Stack = createStackNavigator();
@@ -57,6 +58,12 @@ function MyStack() {
          title:'HELP DESK'}} />
 
         <Stack.Screen name="ChamadoMsgConfirmacao" component={ChamadoMsgConfirmacao} options={{headerMode: 'screen',
+        headerTintColor: 'white',
+        headerTitleAlign:'center',
+        headerStyle: { backgroundColor: '#0000FF' },
+         title:'HELP DESK'}} />
+
+        <Stack.Screen name="Popup" component={Popup} options={{headerMode: 'screen',
         headerTintColor: 'white',
         headerTitleAlign:'center',
         headerStyle: { backgroundColor: '#0000FF' },

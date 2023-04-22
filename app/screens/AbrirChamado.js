@@ -1,5 +1,5 @@
 
-import { StyleSheet , View, Text, TextInput, ScrollView, Button, Image, TouchableOpacity } from "react-native";
+import { StyleSheet , View, Text, TextInput, ScrollView, Button, Image, TouchableOpacity, Alert, Modal, Pressable} from "react-native";
 import { SelectList } from 'react-native-dropdown-select-list'
 import React, { useState, useEffect } from "react";
 import * as ImagePicker from 'expo-image-picker';
@@ -10,7 +10,7 @@ import * as yup from 'yup'
 
 
 const schema = yup.object({
-    
+  prioridade: yup.string().required("Informe a Prioridade") ,
   titulo: yup.string().required("Informe o Titulo do Chamado"),
   descricao: yup.string().required("Descrição"),
 })
@@ -22,31 +22,51 @@ export default function AbrirChamado({navigation}) {
     const { control, handleSubmit, formState: { errors } } = useForm ({
         resolver: yupResolver(schema)
     })
-    
+
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const modalVisivel = () => {
+      setModalVisible(!modalVisible);
+    };
+
+
     function handleSingIn(data){
         console.log("Entrou");
         console.log(data);
-        navigation.reset({
-        index:0,
-        routes: [{name:"ChamadoMsgConfirmacao"}]
-        })  
+        setModalVisible= true;
+        // navigation.reset({
+        // index:0,
+        // routes: [{name:"Home"}]
+        // })  
     }
 
-    const PROPRIEDADE = [
-      {key: '1',value: 'alta'},
-      {key: '2',value: 'baixa'}
+    function handleHome(){
+        navigation.reset({
+        index:0,
+        routes: [{name:"Home"}]
+         })
+    }
+
+    const PRIORIDADE = [
+      {value: 'alta'},
+      {value: 'baixa'}
       
     ];
 
+    const [selectedPrioridade, setSelectedPrioridade] = React.useState("");
 
-    const [selected, setSelected] = React.useState("");
+    console.log(selectedPrioridade);
 
     const SETOR = [
-      {key: '1',value: 'Administrativo'},
-      {key: '2',value: 'Produção'},
-      {key: '3',value: 'Desenvolvimento'}
+      {value: 'Administrativo'},
+      {value: 'Produção'},
+      {value: 'Desenvolvimento'}
       
     ];
+
+    const [selectedSetor, setSelectedSetor] = React.useState("");
+
+    console.log(selectedSetor);
 
     const [image, setImage] = useState(null);
 
@@ -65,6 +85,7 @@ export default function AbrirChamado({navigation}) {
       }
     };
 
+
    return (
    
     <View style={styles.container}>
@@ -78,12 +99,12 @@ export default function AbrirChamado({navigation}) {
           
           <View style={styles.multiSelect}>
             
-            <SelectList 
+            <SelectList
+             name="setor"
              data={SETOR} 
-             setSelected={(val) => setSelected(val)}
+             setSelected={(val) => setSelectedSetor(val)}
              dropdownStyles={{backgroundColor:'#FFFFFF'}}
              placeholder="Selecione uma Opção"
-             onSelect = { ( )  =>  alerta ( selecionado ) } 
             />
           </View>
 
@@ -91,14 +112,38 @@ export default function AbrirChamado({navigation}) {
             <Text style={styles.tituloImput}>Prioridade Do Atendimento</Text>
           </View>
 
+
+          {/* <Controller 
+                  control={control}
+                  name="prioridade"
+                  render={({ field: { onChange, onBlur, value, } }) =>(
+
+                  <SelectList
+                  style={[
+                  styles.input, {
+                      borderWidth: errors.prioridade && 1,
+                      borderColor: errors.prioridade && '#ff375b'
+                  }]}
+                  onChangeText={onChange}
+                  onBlur={onBlur}//chamado quando o textinput é tocado.
+                  value={value}
+                  data={PRIORIDADE} 
+                  setSelected={(val) => setSelectedPrioridade(val)}
+                  dropdownStyles={{backgroundColor:'#FFFFFF'}}
+                  placeholder="Selecione uma Opção"
+                  
+                  />
+                  )}
+              />
+              {errors.prioridade && <Text style={styles.labelError}>{errors.prioridade?.message}</Text>} */}
+
           <View style={styles.multiSelect}>
-            <SelectList  
-            data={PROPRIEDADE} 
-            setSelected={(val) => setSelected(val)}
+            <SelectList
+            name="prioridade" 
+            data={PRIORIDADE} 
+            setSelected={(val) => setSelectedPrioridade(val)}
             dropdownStyles={{backgroundColor:'#FFFFFF'}}
             placeholder="Selecione uma Opção"
-            onSelect = { ( )  =>  alerta ( selecionado ) } 
-
             />
           </View>
           
@@ -168,12 +213,47 @@ export default function AbrirChamado({navigation}) {
                    title="Carregar imagem"
                    onPress={escolherImagemDaGaleria}
                    />
-                  
               </View>
-             
-              <TouchableOpacity style={styles.button} onPress={handleSubmit(handleSingIn)}>
+
+              <View style={styles.centeredView}>
+                  <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    backdropTransitionInTiming={200}
+                    backdropTransitionOutTiming={100}
+                    onRequestClose={() => {
+                      Alert.alert('Chamado Realizado com Sucesso !');
+                      this.setState({modalVisible: !modalVisible});
+                    }}>
+                    <View style={styles.centeredView}>
+                      <View style={styles.modalView}>
+                      <Text style={styles.modalText}>Chamado Realizado com Sucesso!</Text>
+                        <TouchableOpacity 
+                          style={styles.butom} 
+                          onPress={handleHome}>
+                          <Image source={require('../../assets/imagens/confirmacao.png')} 
+                            style={styles.logoOk} 
+                          /> 
+                        </TouchableOpacity>
+                        {/* <Text style={styles.modalText}>Chamado Realizado com Sucesso!</Text>
+                         <Image source={require('../../assets/imagens/confirmacao.png')}
+                         style={styles.logoOk}/>
+                        <Pressable
+                          style={[styles.buttonModal, styles.buttonClose]}
+                          onPress={handleSubmit(handleSingIn)}>
+                          <Text style={styles.textStyle}>OK</Text>
+                        </Pressable> */}
+                      </View>
+                    </View>
+                  </Modal>
+             </View>
+
+              <Pressable style={styles.button}
+                   onPress={modalVisivel}>
+                {/* onPress={handleSubmit(handleSingIn)}>  */}
                       <Text style={styles.titleInputRegistrar}>Abrir Chamado</Text>
-              </TouchableOpacity>
+              </Pressable>
                   
         </View>
       </ScrollView>
@@ -262,7 +342,53 @@ const styles = StyleSheet.create({
     },
     titleInputRegistrar:{
       color:'#FFF',
-    }
+    },
+    centeredView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 22,
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: 'white',
+      borderRadius: 20,
+      padding: 35,
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    buttonModal: {
+      borderRadius: 20,
+      padding: 10,
+      elevation: 2,
+    },
+    buttonClose: {
+      backgroundColor: '#2196F3',
+      height:40,
+      borderRadius: 7,
+    },
+    textStyle: {
+      color: 'white',
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: 'center',
+    },
+    logoOk: {
+      alignItems:"center",
+      width:100,
+      height:100,
+      resizeMode:'contain',
+    },
   });
 
  

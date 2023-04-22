@@ -15,7 +15,7 @@ export default function ChamadoMsgConfirmacao({navigation}) {
 
    return (
     <View style={styles.container}>
-        
+            
         <View style={styles.containerTextoEmail}>
             <Text style={styles.title}>Chamado Realizado com Sucesso!</Text>
         </View>
@@ -76,11 +76,13 @@ const styles = StyleSheet.create({
         color:'#FFF',
     },
     logoOk: {
+        alignItems:"center",
         width:100,
         height:100,
         resizeMode:'contain',
       },
     containerImageEmail:{
+        marginTop:"20%",
         alignItems:"center",
         height:10,
     },
