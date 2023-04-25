@@ -7,10 +7,11 @@ export default function ChamadoMsgConfirmacao({navigation}) {
     function handleSingIn(data){
         console.log("Chamado Realizado com Sucesso ");
         console.log(data);
-        navigation.reset({
-        index:4,
-        routes: [{name:"Home"}]
-        })  
+        navigation.navigate("Home")
+        // navigation.reset({
+        // index:4,
+        // routes: [{name:"Home"}]
+        // })  
     }
 
    return (

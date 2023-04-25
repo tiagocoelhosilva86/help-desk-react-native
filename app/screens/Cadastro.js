@@ -1,5 +1,6 @@
-import React from "react";
-import { StyleSheet , View, Text, TextInput, TouchableOpacity } from "react-native";
+
+import { StyleSheet , View, Text, TextInput, TouchableOpacity,Modal,Image } from "react-native";
+import React, { useState, useEffect } from "react";
 
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -11,7 +12,7 @@ const schema = yup.object({
     
     nome: yup.string().required("Informe Seu Nome"),
     email: yup.string().required("Informe Seu Email"),
-    usuario: yup.string().required("Informe Seu Nome De Usuário"),
+    // usuario: yup.string().required("Informe Seu Nome De Usuário"),
     senha: yup.string().required("Informe Sua Senha"),
     confirmasenha: yup.string().required("Repita Sua Senha"),
 })
@@ -23,15 +24,31 @@ export default function Cadastro({navigation}) {
     const { control, handleSubmit, formState: { errors } } = useForm ({
         resolver: yupResolver(schema)
     })
+
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const modalVisivel = () => {
+      setModalVisible(!modalVisible);
+    };
     
     function handleSingIn(data){
         console.log("Entrou");
         console.log(data);
-        navigation.reset({
-        index:2,
-        routes: [{name:"Login"}]
-        })  
+        setModalVisible= true;
+
+        // navigation.reset({
+        // index:2,
+        // routes: [{name:"Login"}]
+        // })  
     }
+
+    function handleHome(){
+      navigation.navigate("Login")
+      // navigation.reset({
+      // index:0,
+      // routes: [{name:"Home"}]
+      //  })
+  }
 
    return (
     <View style={styles.container}>
@@ -80,7 +97,7 @@ export default function Cadastro({navigation}) {
                 )}
             />
             {errors.email && <Text style={styles.labelError}>{errors.email?.message}</Text>}
-            <Controller 
+            {/* <Controller 
                 control={control}
                 name="usuario"
                 render={({ field: { onChange, onBlur, value} }) =>(
@@ -100,7 +117,7 @@ export default function Cadastro({navigation}) {
                 />
                 )}
             />
-            {errors.usuario && <Text style={styles.labelError}>{errors.usuario?.message}</Text>}
+            {errors.usuario && <Text style={styles.labelError}>{errors.usuario?.message}</Text>} */}
             <Controller 
                 control={control}
                 name="senha"
@@ -144,7 +161,35 @@ export default function Cadastro({navigation}) {
             />
             {errors.confirmasenha && <Text style={styles.labelError}>{errors.confirmasenha?.message}</Text>}
 
-            <TouchableOpacity style={styles.button} onPress={handleSubmit(handleSingIn)}>
+            <View style={styles.centeredView}>
+                  <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    backdropTransitionInTiming={200}
+                    backdropTransitionOutTiming={100}
+                    onRequestClose={() => {
+                      Alert.alert('Chamado Realizado com Sucesso !');
+                      this.setState({modalVisible: !modalVisible});
+                    }}>
+                    <View style={styles.centeredView}>
+                      <View style={styles.modalView}>
+                      <Text style={styles.modalText}>Usuário Cadastrado com  Sucesso!</Text>
+                        <TouchableOpacity 
+                          style={styles.butom} 
+                          onPress={handleHome}>
+                          <Image source={require('../../assets/imagens/confirmacao.png')} 
+                            style={styles.logoOk} 
+                          /> 
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  </Modal>
+             </View>
+
+            <TouchableOpacity style={styles.button}
+            onPress={modalVisivel}>
+             {/* onPress={handleSubmit(handleSingIn)}>  */}
                     <Text style={styles.titleInputRegistrar}>Registrar</Text>
             </TouchableOpacity>
         </View>
@@ -215,5 +260,36 @@ const styles = StyleSheet.create({
     },
     titleInputRegistrar:{
       color:'#FFF',
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: 'white',
+      borderRadius: 20,
+      padding: 35,
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    centeredView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 22,
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: 'center',
+    },
+    logoOk: {
+      alignItems:"center",
+      width:100,
+      height:100,
+      resizeMode:'contain',
     }
   });

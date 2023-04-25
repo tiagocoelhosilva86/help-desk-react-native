@@ -7,10 +7,11 @@ export default function SenhaRecuperada({navigation}) {
     function handleSingIn(data){
         console.log("Verifique sua caixa de email ");
         console.log(data);
-        navigation.reset({
-        index:4,
-        routes: [{name:"Home"}]
-        })  
+        navigation.navigate("Login")
+        // navigation.reset({
+        // index:4,
+        // routes: [{name:"Home"}]
+        // })  
     }
 
    return (

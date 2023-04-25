@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "752388467434",
+    "project_id": "helpdesk-fb2d4",
+    "storage_bucket": "helpdesk-fb2d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752388467434:android:b4a8801b037300b95ac593",
+        "android_client_info": {
+          "package_name": "com.tiagocoelho.helpdesk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "752388467434-6qc0c36c7sd1cudkuic5o0jnt8qnig4a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnGxyehnyRGrDEk20V57PhfnR-iwZJhb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "752388467434-6qc0c36c7sd1cudkuic5o0jnt8qnig4a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
