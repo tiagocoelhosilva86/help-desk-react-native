@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         fontSize:20,
         marginBottom:34,
         color:'#666666',
-        fontWeight: 'Inter'
+        fontWeight: '100'
     },
       button: {
         

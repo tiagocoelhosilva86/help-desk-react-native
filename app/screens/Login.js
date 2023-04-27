@@ -5,19 +5,17 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { ScrollView } from "react-native-gesture-handler";
+import firebase from '../../firebaseConfig';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 
-
-
-
-// const imagemServiceDesk ='../assets/imagens/service-desk.jpg';
 const imagemHelpDesk ='../assets/imagens/helpDesk .png';
 
 
 
 const schema = yup.object({
-  usuario: yup.string().required("Informe Seu Usuario"),
-  senha: yup.string().required("Informe Sua Senha"),
+  email: yup.string().email("O campo deve ter um Email Valido.").required("O campo Email é obrigatório."),
+  senha: yup.string().min(6, "Password minimum 6 characters").required("O campo Senha é obrigatório."),
 })
 
 
@@ -29,31 +27,44 @@ export default function Login({navigation}) {
   })
 
   function handleSingIn(data){
-   console.log("Entrou");
-   console.log(data);
+
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, data.email, data.senha)
+
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+
+      console.log("logou");
+      console.log(data);
+      navigation.navigate("Home")
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+
+      if(errorCode == "auth/user-not-found" ) {
+        alert("usuario ou senha incorreto");
+        return;
+      }
+      console.error(errorMessage, errorCode )
+    });
+    
    
-   navigation.reset({
-   index:0,
-    routes: [{name:"Home"}]
-   })  
   }
 
   function handlePrimeiroAcesso(){
    console.log("Cadastrar Usuario");
    
    navigation.navigate("Cadastro")
-  //  navigation.reset({
-  //   routes: [{name:"Cadastro"}]
-  //  })
+ 
   }
 
   function handleEsqueceuSuaSenha(){
     console.log("Esqueceu Sua Senha");
     
    navigation.navigate("RecuperarSenha")
-    // navigation.reset({
-    //   routes: [{name:"RecuperarSenha"}]
-    //  })
+  
   }
 
 
@@ -63,35 +74,37 @@ export default function Login({navigation}) {
     <View style={styles.container}>
       
         <View style={styles.containerForm}>
-                  {/* <Text style={styles.title}>Help Desk</Text> */}
+                  
                   <View>
                     <Image source={require('../../assets/imagens/helpDesk.png')}
                     style={styles.logo}/>
                   </View>
                 <Controller
                     control={control}
-                    name="usuario"
+                    name="email"
+                    type="email"
                     render={({ field: { onChange, onBlur, value} }) =>(
                       <TextInput
 
                         style={[
                         styles.input, {
-                            borderWidth: errors.usuario && 1,
-                            borderColor: errors.usuario && '#ff375b'
+                            borderWidth: errors.email && 1,
+                            borderColor: errors.email && '#ff375b'
                         }]}
                         onChangeText={onChange}
                         onBlur={onBlur}//chamado quando o textinput é tocado.
                         value={value}
                         keyboardType='name-phone-pad'
-                        placeholder="Usuario"
+                        placeholder="Digite seu Email"
                       />
                     )}
                   />
-                {errors.usuario && <Text style={styles.labelError}>{errors.usuario?.message}</Text>}
-                {/* <Text style={styles.titleInput}>Senha</Text> */}
+                {errors.email && <Text style={styles.labelError}>{errors.email?.message}</Text>}
+                
                 <Controller 
                   control={control}
                   name="senha"
+                  type="number"
                   render={({ field: { onChange, onBlur, value} }) =>(
                   <TextInput
 
