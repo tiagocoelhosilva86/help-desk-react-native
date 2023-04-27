@@ -1,26 +1,47 @@
-import {StyleSheet,View,Text,TextInput,TouchableOpacity,Modal,Image} from "react-native";
-import React, { useState} from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Modal,
+  Image,
+} from "react-native";
+import React, { useState } from "react";
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, SubmitHandler, FieldValues } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ScrollView } from "react-native-gesture-handler";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import firebase from "../../firebaseConfig";
+import Loading from "../../components/loading";
+import { useNavigation } from "@react-navigation/native";
 
 const schema = yup.object({
-  
-  email: yup.string().email("O campo deve ter um Email Valido.").required("O campo Email é obrigatório."),
-  senha: yup.string().min(6, "Password minimum 6 characters").required("O campo Senha é obrigatório."),
-  
+  email: yup
+    .string()
+    .email("O campo deve ter um Email Valido.")
+    .required("O campo Email é obrigatório."),
+  senha: yup
+    .string()
+    .min(6, "Password minimum 6 characters")
+    .required("O campo Senha é obrigatório."),
 });
 
+type RegistroData = {
+  email: string;
+  senha: string;
+};
 
+const Cadastro = () => {
+  const navigation = useNavigation();
 
-export default function Cadastro({ navigation }) {
-
-  const {control,handleSubmit,formState: { errors },} = useForm({resolver: yupResolver(schema),
-  });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -30,52 +51,45 @@ export default function Cadastro({ navigation }) {
     setModalVisible(!modalVisible);
   };
 
-  function handleSingIn(data) {
+  const [loading, setLoading] = useState(false);
 
+  function handleSingIn(data: RegistroData){
+    setLoading(true);
     const auth = getAuth(firebase);
     createUserWithEmailAndPassword(auth, data.email, data.senha)
       .then((userCredential) => {
-        
         const user = userCredential.user;
-        
-      
-      console.log("Registro");
-      console.log(data);
-      modalVisivel();
-       
+
+        setLoading(false);
+        console.log("Registro");
+        console.log(data);
+        modalVisivel();
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setLoading(false);
 
-        if(errorCode == "auth/email-already-in-use"){
-          popaError();
+        if (errorCode == "auth/email-already-in-use") {
+          popupError();
           return;
         }
-        console.error(errorMessage, errorCode )
-       
+        console.error(errorMessage, errorCode);
       });
   }
 
   function handleHome() {
     navigation.navigate("Login");
-    
   }
 
-  function popaError() {
+  function popupError() {
     setModalVisibleError(!modalVisibleError);
   }
-
-  function handleRegistro() {
-    navigation.navigate("Cadastro");
-    popaError() == false;
-
-
-  };
 
   return (
     <View style={styles.container}>
       <ScrollView>
+        <Loading loading={loading} />
         <View style={styles.containerForm}>
           <Text style={styles.title}>Registre-Se</Text>
           <Controller
@@ -102,7 +116,7 @@ export default function Cadastro({ navigation }) {
           {errors.email && (
             <Text style={styles.labelError}>{errors.email?.message}</Text>
           )}
-          
+
           <Controller
             control={control}
             name="senha"
@@ -174,7 +188,7 @@ export default function Cadastro({ navigation }) {
                   <Text style={styles.modalText}>
                     Usuário já Cadastrado no Sistema !
                   </Text>
-                  <TouchableOpacity style={styles.butom} onPress={handleRegistro}>
+                  <TouchableOpacity style={styles.butom} onPress={popupError}>
                     <Image
                       source={require("../../assets/imagens/usuarioJacadastrado.png")}
                       style={styles.logoOk}
@@ -187,14 +201,15 @@ export default function Cadastro({ navigation }) {
 
           <TouchableOpacity
             style={styles.button}
-            onPress={handleSubmit(handleSingIn)}>
+            onPress={handleSubmit(handleSingIn)}
+          >
             <Text style={styles.titleInputRegistrar}>Registrar</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -287,3 +302,5 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
 });
+
+export default Cadastro;

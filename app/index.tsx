@@ -7,11 +7,11 @@ import Recuperar from "./screens/Recuperar";
 import Login from "./screens/Login";
 import AbrirChamado from "./screens/AbrirChamado";
 import AdicionarUsuario from "./screens/AdicionarUsuario";
-import Configuracao from "./screens/Configuracao";
 import SenhaRecuperada from "./screens/SenhaRecuperada";
 import ListaChamados from "./screens/ListaChamados";
 import RelatorioChamados from "./screens/RelatorioChamados";
 import ChamadoMsgConfirmacao from "./screens/ChamadoMsgConfir";
+import Informacao from "./screens/Informacao"
 import Popup from "./screens/Popup";
 import { BackHandler } from "react-native";
 
@@ -87,7 +87,7 @@ function MyStack() {
         headerStyle: { backgroundColor: '#0000FF' },
          title:'HELP DESK'}} />
 
-         <Stack.Screen name="Configuracao" component={Configuracao} options={{headerMode: 'screen',
+         <Stack.Screen name="Informacao" component={Informacao} options={{headerMode: 'screen',
         headerTintColor: 'white',
         headerTitleAlign:'center',
         headerStyle: { backgroundColor: '#0000FF' },
