@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet , View, Text, ScrollView, TouchableOpacity } from "react-native";
+import LottieView from  "lottie-react-native";
 
 
 
@@ -15,17 +16,27 @@ export default function RelatorioChamados({navigation}) {
         </View>
 
         <View style={styles.containerCards}>
-          <View style={styles.cardVermelho}>
+        
+          <View style={styles.card}>
+            <View>
+              <LottieView style={styles.LottieView} source={require("../../assets/imagens/waiting.json")} loop autoPlay />
+            </View>
             <Text style={styles.textoCard}>Chamados em Espera</Text>
             <Text style={styles.textoCard}>Total: 22</Text>
           </View>
 
-          <View style={styles.cardLaranja}>
+          <View style={styles.card}>
+            <View>
+             <LottieView style={styles.LottieView} source={require("../../assets/imagens/customerservice.json")} loop autoPlay />
+            </View>
             <Text style={styles.textoCard}>Chamados Em Atendimento</Text>
             <Text style={styles.textoCard}>Total: 12</Text>
           </View>
 
-          <View style={styles.cardVerde}>
+          <View style={styles.card}>
+            <View>
+              <LottieView style={styles.LottieViewSuporte} source={require("../../assets/imagens/support.json")} loop autoPlay />
+            </View>
             <Text style={styles.textoCard}>Chamados Encerrados</Text>
             <Text style={styles.textoCard}>Total: 45</Text>
           </View>
@@ -39,8 +50,10 @@ export default function RelatorioChamados({navigation}) {
 
 const styles = StyleSheet.create({
     container: {
-      flex:1,
-      justifyContent:"center",
+      flex: 1,
+    justifyContent: "center",
+    height: "100%",
+    paddingTop: 30,
       
     },
 
@@ -61,10 +74,10 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
 
     },
-    cardVermelho:{
-      backgroundColor:'#ff0000',
+    card:{
+      backgroundColor:'#ffffff',
       borderRadius:10,
-      height:100,
+      height:210,
       flexDirection: 'column',
       justifyContent:"center",
       alignItems:'center',
@@ -80,49 +93,16 @@ const styles = StyleSheet.create({
       elevation: 16,
       
   },
-  cardVerde:{
-    backgroundColor:'#00ff00',
-    borderRadius:10,
-    height:100,
-    flexDirection: 'column',
-    justifyContent:"center",
-    alignItems:'center',
-    marginBottom:25,
-    margin:5,
-    shadowColor: "#000",
-    shadowOffset: {
-    width: 0,
-    height: 8,
-    },
-    shadowOpacity: 0.46,
-    shadowRadius: 10.68,
-    elevation: 16,
-    
+textoCard:{
+  fontWeight: 'bold',
+  fontSize:19,
+  marginTop:8,
 },
-
-cardLaranja:{
-  backgroundColor:'#f7ff00',
-  borderRadius:10,
-  height:100,
-  flexDirection: 'column',
-  justifyContent:"center",
-  alignItems:'center',
-  marginBottom:25,
-  margin:5,
-  shadowColor: "#000",
-  shadowOffset: {
-  width: 0,
-  height: 8,
-  },
-  shadowOpacity: 0.46,
-  shadowRadius: 10.68,
-  elevation: 16,
-  
+  LottieView:{
+  width:180,
 },
-    textoCard:{
-      fontWeight: 'bold',
-      fontSize:19,
-      marginTop:10,
-    }
+LottieViewSuporte:{
+width:125,
+}
 
   });

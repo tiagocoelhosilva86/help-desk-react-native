@@ -8,6 +8,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
+import LottieView from  "lottie-react-native";
 
 const  Home = () => {
     
@@ -50,20 +51,14 @@ const  Home = () => {
       <ScrollView>
         <View style={styles.containerMenu}>
           <TouchableOpacity style={styles.butom} onPress={handleAbrirChamado}>
-            <Image
-              source={require("../../assets/imagens/addchamado.png")}
-              style={styles.buttonImageIconStyle}
-            />
+          <LottieView style={styles.LottieViewServico} source={require("../../assets/imagens/customerservice.json")} loop autoPlay />
             <Text style={styles.textoIcon}>Abrir Chamado</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.containerMenu}>
           <TouchableOpacity style={styles.butom} onPress={handleListaChamados}>
-            <Image
-              source={require("../../assets/imagens/listachamados.png")}
-              style={styles.buttonImageIconStyle}
-            />
+          <LottieView style={styles.LottieView} source={require("../../assets/imagens/listmanual.json")} loop autoPlay />
             <Text style={styles.textoIcon}>Lista de Chamados</Text>
           </TouchableOpacity>
         </View>
@@ -73,31 +68,13 @@ const  Home = () => {
             style={styles.butom}
             onPress={handleRelatorioChamados}
           >
-            <Image
-              source={require("../../assets/imagens/relatorio.png")}
-              style={styles.buttonImageIconStyle}
-            />
+           <LottieView style={styles.LottieView} source={require("../../assets/imagens/analyst.json")} loop autoPlay />
             <Text style={styles.textoIcon}>Relatorio de Chamados</Text>
           </TouchableOpacity>
         </View>
-
-        {/* <View style={styles.containerMenu}>
-                <TouchableOpacity 
-                style={styles.butom} 
-                onPress={handleAdicionarUsuario}>
-                    <Image source={require('../../assets/imagens/addusuario.png')} 
-                        style={styles.buttonImageIconStyle} 
-                    /> 
-                    <Text style={styles.textoIcon}>Adicionar Usuario</Text>
-                </TouchableOpacity>
-            </View> */}
-
         <View style={styles.containerMenu}>
           <TouchableOpacity style={styles.butom} onPress={handleConfiguracao}>
-            <Image
-              source={require("../../assets/imagens/config.png")}
-              style={styles.buttonImageIconStyle}
-            />
+          <LottieView style={styles.LottieView} source={require("../../assets/imagens/information.json")} loop autoPlay />
             <Text style={styles.textoIcon}>Informação</Text>
           </TouchableOpacity>
         </View>
@@ -148,6 +125,12 @@ const styles = StyleSheet.create({
     height: 60,
     resizeMode: "contain",
   },
+  LottieView:{
+    width:110,
+  },
+  LottieViewServico:{
+    width:150,
+  }
 });
 
 export default Home;

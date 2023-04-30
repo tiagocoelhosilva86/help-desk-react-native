@@ -1,9 +1,11 @@
 import React from "react";
-import { StyleSheet, View, Text, TextInput, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
 
-import { useForm, Controller } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import LottieView from  "lottie-react-native";
+
 
 const schema = yup.object({
 
@@ -29,8 +31,12 @@ export default function Recuperar({navigation}) {
 
    return (
         <View style={styles.container}>
+          <ScrollView>
             <View style={styles.containerForm}>
                <Text style={styles.title}>Recuperar Senha</Text>
+                <View>
+                  <LottieView style={styles.LottieView} source={require("../../assets/imagens/data-security.json")} loop autoPlay />
+                </View>
                 <Controller 
                     control={control}
                     name="email"
@@ -57,7 +63,7 @@ export default function Recuperar({navigation}) {
                         <Text style={styles.buttonRecuperar}>Enviar</Text>
                 </TouchableOpacity>
             </View>
-                
+          </ScrollView>      
         </View>
     )
 }
@@ -75,7 +81,8 @@ const styles = StyleSheet.create({
     },
     title:{
       fontSize:34,
-      marginBottom:34,
+      marginBottom:30,
+      marginTop:30,
       color:'rgba(18, 70, 255, 1)',
       fontWeight: 'bold'
     },
@@ -122,5 +129,9 @@ const styles = StyleSheet.create({
     },
     buttonRecuperar:{
       color:'#FFF',
+    },
+    LottieView:{
+      width:150,
     }
+ 
   });

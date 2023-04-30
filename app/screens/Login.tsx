@@ -15,6 +15,7 @@ import * as yup from "yup";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Loading from "../../components/loading";
 import { useNavigation } from "@react-navigation/native";
+import LottieView from  "lottie-react-native";
 
 const schema = yup.object({
   email: yup
@@ -91,10 +92,11 @@ const Login = () => {
         <Loading loading={loading} />
         <View style={styles.containerForm}>
           <View>
-            <Image
+          <LottieView style={styles.LottieView} source={require("../../assets/imagens/helpdesk-blue.json")} loop autoPlay />
+            {/* <Image
               source={require("../../assets/imagens/helpDesk.png")}
               style={styles.logo}
-            />
+            /> */}
           </View>
           <Controller
             control={control}
@@ -239,6 +241,9 @@ const styles = StyleSheet.create({
   titleInputEnviar: {
     color: "#FFF",
   },
+  LottieView:{
+    width:280,
+  }
 });
 
 export default Login;

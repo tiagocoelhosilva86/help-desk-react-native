@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet , View, Text, ScrollView} from "react-native";
+import LottieView from  "lottie-react-native";
 
 
 export default function ListaChamados({navigation}) {
@@ -36,7 +37,9 @@ export default function ListaChamados({navigation}) {
 
         <View style={styles.item}>
             <View style={styles.itemChamados}>
-
+            <View>
+             <LottieView style={styles.LottieView} source={require("../../assets/imagens/customerservice.json")} loop autoPlay />
+            </View>
               <View style={styles.containerPrioridade}>
                 <Text style={styles.textoPrioridades}>Prioridade:</Text> 
               <View style={styles.quadradoVermelho}> 
@@ -63,7 +66,9 @@ export default function ListaChamados({navigation}) {
 
         <View style={styles.item}>
             <View style={styles.itemChamados}>
-              
+            <View>
+             <LottieView style={styles.LottieView} source={require("../../assets/imagens/customerservice.json")} loop autoPlay />
+            </View>
               <View style={styles.containerPrioridade}>
                 <Text style={styles.textoPrioridades}>Prioridade:</Text> 
               <View style={styles.quadradoLaranja}> 
@@ -90,7 +95,9 @@ export default function ListaChamados({navigation}) {
 
         <View style={styles.item}>
             <View style={styles.itemChamados}>
-              
+            <View>
+             <LottieView style={styles.LottieView} source={require("../../assets/imagens/customerservice.json")} loop autoPlay />
+            </View>
               <View style={styles.containerPrioridade}>
                 <Text style={styles.textoPrioridades}>Prioridade:</Text> 
               <View style={styles.quadradoVermelho}> 
@@ -117,7 +124,9 @@ export default function ListaChamados({navigation}) {
 
         <View style={styles.item}>
             <View style={styles.itemChamados}>
-              
+            <View>
+             <LottieView style={styles.LottieView} source={require("../../assets/imagens/customerservice.json")} loop autoPlay />
+            </View>
               <View style={styles.containerPrioridade}>
                 <Text style={styles.textoPrioridades}>Prioridade:</Text> 
               <View style={styles.quadradoLaranja}> 
@@ -144,7 +153,9 @@ export default function ListaChamados({navigation}) {
 
         <View style={styles.item}>
             <View style={styles.itemChamados}>
-              
+            <View>
+             <LottieView style={styles.LottieView} source={require("../../assets/imagens/customerservice.json")} loop autoPlay />
+            </View>
               <View style={styles.containerPrioridade}>
                 <Text style={styles.textoPrioridades}>Prioridade:</Text> 
               <View style={styles.quadradoVermelho}> 
@@ -171,7 +182,9 @@ export default function ListaChamados({navigation}) {
 
         <View style={styles.item}>
             <View style={styles.itemChamados}>
-              
+            <View>
+             <LottieView style={styles.LottieView} source={require("../../assets/imagens/customerservice.json")} loop autoPlay />
+            </View>
               <View style={styles.containerPrioridade}>
                 <Text style={styles.textoPrioridades}>Prioridade:</Text> 
               <View style={styles.quadradoLaranja}> 
@@ -306,5 +319,8 @@ marginBottom: 3,
       borderColor: 'black',
       
     },
+    LottieView:{
+    width:180,
+},
 
   });

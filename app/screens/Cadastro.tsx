@@ -17,6 +17,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import firebase from "../../firebaseConfig";
 import Loading from "../../components/loading";
 import { useNavigation } from "@react-navigation/native";
+import LottieView from  "lottie-react-native";
 
 const schema = yup.object({
   email: yup
@@ -92,6 +93,9 @@ const Cadastro = () => {
         <Loading loading={loading} />
         <View style={styles.containerForm}>
           <Text style={styles.title}>Registre-Se</Text>
+          <View>
+          <LottieView style={styles.LottieView} source={require("../../assets/imagens/login-leady.json")} loop autoPlay />
+          </View>
           <Controller
             control={control}
             name="email"
@@ -161,10 +165,12 @@ const Cadastro = () => {
                     Usuário Cadastrado com Sucesso!
                   </Text>
                   <TouchableOpacity style={styles.butom} onPress={handleHome}>
-                    <Image
+
+                  <LottieView style={styles.LottieView} source={require("../../assets/imagens/confirmation")} loop autoPlay />
+                    {/* <Image
                       source={require("../../assets/imagens/confirmacao.png")}
                       style={styles.logoOk}
-                    />
+                    /> */}
                   </TouchableOpacity>
                 </View>
               </View>
@@ -189,10 +195,11 @@ const Cadastro = () => {
                     Usuário já Cadastrado no Sistema !
                   </Text>
                   <TouchableOpacity style={styles.butom} onPress={popupError}>
-                    <Image
+                  <LottieView style={styles.LottieView} source={require("../../assets/imagens/error")} loop autoPlay />
+                    {/* <Image
                       source={require("../../assets/imagens/usuarioJacadastrado.png")}
                       style={styles.logoOk}
-                    />
+                    /> */}
                   </TouchableOpacity>
                 </View>
               </View>
@@ -301,6 +308,9 @@ const styles = StyleSheet.create({
     height: 100,
     resizeMode: "contain",
   },
+  LottieView:{
+    width:150,
+  }
 });
 
 export default Cadastro;

@@ -4,9 +4,10 @@ import { SelectList } from 'react-native-dropdown-select-list'
 import React, { useState, useEffect } from "react";
 import * as ImagePicker from 'expo-image-picker';
 
-import { useForm, Controller } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import LottieView from  "lottie-react-native";
 
 
 const schema = yup.object({
@@ -232,9 +233,10 @@ export default function AbrirChamado({navigation}) {
                         <TouchableOpacity 
                           style={styles.butom} 
                           onPress={handleHome}>
-                          <Image source={require('../../assets/imagens/confirmacao.png')} 
+                            <LottieView style={styles.LottieView} source={require("../../assets/imagens/confirmation")} loop autoPlay />
+                          {/* <Image source={require('../../assets/imagens/confirmacao.png')} 
                             style={styles.logoOk} 
-                          /> 
+                          />  */}
                         </TouchableOpacity>
                         {/* <Text style={styles.modalText}>Chamado Realizado com Sucesso!</Text>
                          <Image source={require('../../assets/imagens/confirmacao.png')}
@@ -389,6 +391,9 @@ const styles = StyleSheet.create({
       height:100,
       resizeMode:'contain',
     },
+    LottieView:{
+      width:150,
+    }
   });
 
  

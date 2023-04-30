@@ -42,7 +42,8 @@
     "react-native-svg-transformer": "^1.0.0",
     "react-native-web": "~0.18.10",
     "yarn": "^1.22.19",
-    "yup": "^1.0.2"
+    "yup": "^1.0.2",
+    "lottie-react-native": "5.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

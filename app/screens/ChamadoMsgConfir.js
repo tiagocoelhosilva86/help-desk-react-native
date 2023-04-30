@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet , View, Text, TouchableOpacity, Image } from "react-native";
+import LottieView from  "lottie-react-native";
 
 
 export default function ChamadoMsgConfirmacao({navigation}) {
@@ -21,8 +22,7 @@ export default function ChamadoMsgConfirmacao({navigation}) {
             <Text style={styles.title}>Chamado Realizado com Sucesso!</Text>
         </View>
         <View style={styles.containerImageEmail}>
-        <Image source={require('../../assets/imagens/confirmacao.png')}
-              style={styles.logoOk}/>
+        <LottieView style={styles.LottieView} source={require("../../assets/imagens/confirmation")} loop autoPlay />
         </View>
         <View style={styles.containerForm}>
             <Text style={styles.titleTexto}>A Companhe o Estatos de Seus Chamados Abertos</Text>
@@ -90,5 +90,8 @@ const styles = StyleSheet.create({
     containerTextoEmail:{
         paddingTop:10,
     },
+    LottieView:{
+        width:150,
+      }
 
 });   
