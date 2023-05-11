@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
 
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import LottieView from  "lottie-react-native";
-
+import Loading from "../../components/loading";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 const schema = yup.object({
 
-    email: yup.string().required("Informe Seu Email Cadastrado"),
+    email: yup.string()
+    .email("O campo deve ter um Email Valido.")
+    .required("Informe Seu Email Cadastrado"),
 })
 
 export default function Recuperar({navigation}) {
@@ -18,20 +21,38 @@ export default function Recuperar({navigation}) {
     const { control, handleSubmit, formState: { errors } } = useForm ({
         resolver: yupResolver(schema)
     })
+
+    const [loading, setLoading] = useState(false);
     
-    function handleSingIn(data){
-        console.log("Senha Recuperada");
-        console.log(data);
-        navigation.reset({
-        index:3,
-        routes: [{name:"SenhaRecuperada"}]
-        })  
+   function recoverPassword(email){
+      console.log("Recuperar Senha");
+      console.log(email);
+      setLoading(true);
+      const auth = getAuth();
+      sendPasswordResetEmail(auth, email.email).then((userCredential) => {
+        // Signed in
+        setLoading(false);
+        navigation.navigate("SenhaRecuperada"); 
+      }).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setLoading(false);
+
+        if (errorCode == "auth/user-not-found") {
+          alert("Usuario Não existe");
+          return;
+        }
+
+        console.error(errorMessage, errorCode);
+      });
+        
     }
 
 
    return (
         <View style={styles.container}>
           <ScrollView>
+          <Loading loading={loading} />
             <View style={styles.containerForm}>
                <Text style={styles.title}>Recuperar Senha</Text>
                 <View>
@@ -59,7 +80,7 @@ export default function Recuperar({navigation}) {
                 />
                 {errors.email && <Text style={styles.labelError}>{errors.email?.message}</Text>}
 
-                <TouchableOpacity style={styles.button} onPress={handleSubmit(handleSingIn)}>
+                <TouchableOpacity style={styles.button} onPress={handleSubmit(recoverPassword)}>
                         <Text style={styles.buttonRecuperar}>Enviar</Text>
                 </TouchableOpacity>
             </View>
