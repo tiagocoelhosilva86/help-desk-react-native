@@ -56,7 +56,7 @@ const Cadastro = () => {
 
   function handleSingIn(data: RegistroData){
     setLoading(true);
-    const auth = getAuth(firebase);
+    const auth = getAuth(this.firebase);
     createUserWithEmailAndPassword(auth, data.email, data.senha)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -167,10 +167,6 @@ const Cadastro = () => {
                   <TouchableOpacity style={styles.butom} onPress={handleHome}>
 
                   <LottieView style={styles.LottieView} source={require("../../assets/imagens/confirmation")} loop autoPlay />
-                    {/* <Image
-                      source={require("../../assets/imagens/confirmacao.png")}
-                      style={styles.logoOk}
-                    /> */}
                   </TouchableOpacity>
                 </View>
               </View>

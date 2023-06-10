@@ -1,6 +1,6 @@
+import LottieView from "lottie-react-native";
 import React from "react";
-import { StyleSheet , View, Text, TouchableOpacity, Image } from "react-native";
-import LottieView from  "lottie-react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 
 export default function SenhaRecuperada({navigation}) {

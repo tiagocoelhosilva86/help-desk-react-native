@@ -1,64 +1,72 @@
-import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import LottieView from "lottie-react-native";
+import React from "react";
 import {
-  StyleSheet,
-  Image,
-  Text,
-  View,
   ScrollView,
+  StyleSheet,
+  Text,
   TouchableOpacity,
+  View,
 } from "react-native";
-import LottieView from  "lottie-react-native";
 
-const  Home = () => {
-    
+const Home = () => {
   const navigation = useNavigation();
-  
-  function handleAbrirChamado(data) {
+
+  const handleAbrirChamado = (data) => {
     console.log("Entrou");
     console.log(data);
     navigation.navigate("AbrirChamado");
-  }
+  };
 
-  function handleListaChamados(data) {
-    console.log("Entrou");
-    console.log(data);
+  const handleListaChamados = () => {
+    console.log("Entrou lista de chamados");
+    // console.log(getChamados())
     navigation.navigate("ListaChamados");
-  }
+  };
 
-  function handleRelatorioChamados(data) {
+  const handleRelatorioChamados = (data) => {
     console.log("Entrou");
     console.log(data);
 
     navigation.navigate("RelatorioChamados");
-  }
+  };
 
-  function handleAdicionarUsuario(data) {
+  const handleAdicionarUsuario = (data) => {
     console.log("Entrou");
     console.log(data);
 
     navigation.navigate("AdicionarUsuario");
-  }
+  };
 
-  function handleConfiguracao(data) {
+  const handleConfiguracao = (data) => {
     console.log("Entrou");
     console.log(data);
     navigation.navigate("Informacao");
-  }
+  };
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.containerMenu}>
           <TouchableOpacity style={styles.butom} onPress={handleAbrirChamado}>
-          <LottieView style={styles.LottieViewServico} source={require("../../assets/imagens/customerservice.json")} loop autoPlay />
+            <LottieView
+              style={styles.LottieViewServico}
+              source={require("../../assets/imagens/customerservice.json")}
+              loop
+              autoPlay
+            />
             <Text style={styles.textoIcon}>Abrir Chamado</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.containerMenu}>
           <TouchableOpacity style={styles.butom} onPress={handleListaChamados}>
-          <LottieView style={styles.LottieView} source={require("../../assets/imagens/listmanual.json")} loop autoPlay />
+            <LottieView
+              style={styles.LottieView}
+              source={require("../../assets/imagens/listmanual.json")}
+              loop
+              autoPlay
+            />
             <Text style={styles.textoIcon}>Lista de Chamados</Text>
           </TouchableOpacity>
         </View>
@@ -68,20 +76,30 @@ const  Home = () => {
             style={styles.butom}
             onPress={handleRelatorioChamados}
           >
-           <LottieView style={styles.LottieView} source={require("../../assets/imagens/analyst.json")} loop autoPlay />
+            <LottieView
+              style={styles.LottieView}
+              source={require("../../assets/imagens/analyst.json")}
+              loop
+              autoPlay
+            />
             <Text style={styles.textoIcon}>Relatorio de Chamados</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.containerMenu}>
           <TouchableOpacity style={styles.butom} onPress={handleConfiguracao}>
-          <LottieView style={styles.LottieView} source={require("../../assets/imagens/information.json")} loop autoPlay />
+            <LottieView
+              style={styles.LottieView}
+              source={require("../../assets/imagens/information.json")}
+              loop
+              autoPlay
+            />
             <Text style={styles.textoIcon}>Informação</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -125,12 +143,12 @@ const styles = StyleSheet.create({
     height: 60,
     resizeMode: "contain",
   },
-  LottieView:{
-    width:110,
+  LottieView: {
+    width: 110,
   },
-  LottieViewServico:{
-    width:150,
-  }
+  LottieViewServico: {
+    width: 150,
+  },
 });
 
 export default Home;

@@ -1,18 +1,16 @@
+import { useNavigation } from "@react-navigation/native";
+import LottieView from "lottie-react-native";
 import React from "react";
-import { StyleSheet , View, Text, TouchableOpacity, Image } from "react-native";
-import LottieView from  "lottie-react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
+const ChamadoMsgConfirmacao = () => {
 
-export default function ChamadoMsgConfirmacao({navigation}) {
-
+    const navigation = useNavigation();
+  
     function handleSingIn(data){
         console.log("Chamado Realizado com Sucesso ");
         console.log(data);
         navigation.navigate("Home")
-        // navigation.reset({
-        // index:4,
-        // routes: [{name:"Home"}]
-        // })  
     }
 
    return (
@@ -95,3 +93,5 @@ const styles = StyleSheet.create({
       }
 
 });   
+
+export default ChamadoMsgConfirmacao;

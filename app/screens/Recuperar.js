@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
-import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import LottieView from  "lottie-react-native";
-import Loading from "../../components/loading";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import LottieView from "lottie-react-native";
+import { Controller, useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import Loading from "../../components/loading";
 
 const schema = yup.object({
 
