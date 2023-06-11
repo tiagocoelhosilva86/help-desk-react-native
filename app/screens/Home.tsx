@@ -35,6 +35,12 @@ const Home = () => {
     navigation.navigate("AdicionarUsuario");
   };
 
+  const handleRecuperSenha = (data) => {
+  console.log("RecuperSenha");
+    console.log(data);
+    navigation.navigate("RecuperarSenha");
+  }
+
   const handleConfiguracao = (data) => {
     console.log("Entrou");
     console.log(data);
@@ -91,6 +97,17 @@ const Home = () => {
               autoPlay
             />
             <Text style={styles.textoIcon}>Adicionar novo Usuário</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.containerMenu}>
+          <TouchableOpacity style={styles.butom} onPress={handleRecuperSenha}>
+            <LottieView
+              style={styles.LottieView}
+              source={require("../../assets/imagens/123833-cloud-data-download-restore.json")}
+              loop
+              autoPlay
+            />
+            <Text style={styles.textoIcon}>Recuper Senha</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.containerMenu}>
