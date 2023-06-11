@@ -13,28 +13,25 @@ const Home = () => {
   const navigation = useNavigation();
 
   const handleAbrirChamado = (data) => {
-    console.log("Entrou");
+    console.log("AbrirChamado");
     console.log(data);
     navigation.navigate("AbrirChamado");
   };
 
   const handleListaChamados = () => {
-    console.log("Entrou lista de chamados");
-    // console.log(getChamados())
+    console.log("lista de chamados");
     navigation.navigate("ListaChamados");
   };
 
   const handleRelatorioChamados = (data) => {
-    console.log("Entrou");
+    console.log("RelatorioChamados");
     console.log(data);
-
     navigation.navigate("RelatorioChamados");
   };
 
-  const handleAdicionarUsuario = (data) => {
-    console.log("Entrou");
+  const handleAddUsuario = (data) => {
+    console.log("AdicionarUsuario");
     console.log(data);
-
     navigation.navigate("AdicionarUsuario");
   };
 
@@ -83,6 +80,17 @@ const Home = () => {
               autoPlay
             />
             <Text style={styles.textoIcon}>Relatorio de Chamados</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.containerMenu}>
+          <TouchableOpacity style={styles.butom} onPress={handleAddUsuario}>
+            <LottieView
+              style={styles.LottieView}
+              source={require("../../assets/imagens/57946-profile-user-card.json")}
+              loop
+              autoPlay
+            />
+            <Text style={styles.textoIcon}>Adicionar novo Usuário</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.containerMenu}>

@@ -83,6 +83,9 @@ const ListaChamados = () => {
                   Data de Abertura: {chamado.dataAbertura}
                 </Text>
                 <Text style={styles.textoPrioridades}>
+                  Hora: {chamado.hora}
+                </Text>
+                <Text style={styles.textoPrioridades}>
                   Descrição: {chamado.descricao}
                 </Text>
                 {chamado.url ? (
