@@ -3,6 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import LottieView from "lottie-react-native";
 import React, { useEffect, useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import Loading from "../../components/loading";
 import { db } from "../../firebaseConfig";
 
 declare type Chamado = {
@@ -18,14 +19,17 @@ declare type Chamado = {
 
 const ListaChamados = () => {
   const navigation = useNavigation();
-
-  const [listaChamadosAbertos, setListaChamadosAbertos] = useState(Array<Chamado>());
+  const [loading, setLoading] = useState(false);
+  const [listaChamadosAbertos, setListaChamadosAbertos] = useState(
+    Array<Chamado>()
+  );
 
   useEffect(() => {
     getChamados();
   }, []);
 
   async function getChamados() {
+    setLoading(true);
     console.log("recuperando chamados");
     const querySnapshot = await getDocs(collection(db, "chamados"));
     const lista: Array<Chamado> = Array<Chamado>();
@@ -44,13 +48,14 @@ const ListaChamados = () => {
 
       lista.push(chamadosAbertos);
     });
-
+    setLoading(false);
     setListaChamadosAbertos(lista);
   }
 
   return (
     <View style={styles.container}>
       <ScrollView>
+      <Loading loading={loading} />
         <View style={styles.containerForm}>
           <Text style={styles.title}> Lista de Chamados</Text>
         </View>
@@ -80,14 +85,14 @@ const ListaChamados = () => {
                 <Text style={styles.textoPrioridades}>
                   Descrição: {chamado.descricao}
                 </Text>
-                { chamado.url ? (
-                    <View>
-                      <Image
-                        source={{uri: chamado.url}}
-                        style={{ width: 200, height: 200 }}
-                      />
-                    </View>
-                  ) : null}
+                {chamado.url ? (
+                  <View>
+                    <Image
+                      source={{ uri: chamado.url }}
+                      style={{ width: 200, height: 200 }}
+                    />
+                  </View>
+                ) : null}
               </View>
             </View>
           </View>
