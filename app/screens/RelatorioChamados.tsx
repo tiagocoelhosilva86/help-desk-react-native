@@ -18,13 +18,11 @@ const RelatorioChamados = () => {
     console.log("lista de quantidade de chamados ");
     const querySnapshot = await getDocs(collection(db, "chamados"));
     const quantidade = querySnapshot.size;
-    
+
     setLoading(false);
-  setListaChamadosAbertos(quantidade);
+    setListaChamadosAbertos(quantidade);
     console.log(quantidade);
-    
   }
-  
 
   return (
     <View style={styles.container}>
@@ -35,7 +33,7 @@ const RelatorioChamados = () => {
         </View>
 
         <View style={styles.containerCards}>
-        <View style={styles.card}>
+          <View style={styles.card}>
             <View>
               <LottieView
                 style={styles.LottieView}
@@ -47,7 +45,6 @@ const RelatorioChamados = () => {
             <Text style={styles.textoCard}>Total de Chamados Abertos</Text>
             <Text style={styles.textoCard}>Total: {listaChamadosAbertos}</Text>
           </View>
-          
 
           <View style={styles.card}>
             <View>
