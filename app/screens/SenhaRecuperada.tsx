@@ -8,7 +8,7 @@ const navigation = useNavigation();
   function handleSingIn(data) {
     console.log("Verifique sua caixa de email ");
     console.log(data);
-    navigation.navigate("Login");
+    navigation.navigate("Home");
   }
 
   return (

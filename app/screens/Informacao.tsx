@@ -23,7 +23,7 @@ const Informacao = () => {
               style={styles.logo}
             />
             <View style={styles.containerTexto}>
-                <Text style={styles.textoIcon}>Verção Admin</Text>
+                <Text style={styles.textoIcon}>Versão Admin</Text>
                 <Text style={styles.textoIcon}>APP v 1.0.1</Text>
             </View>
             
