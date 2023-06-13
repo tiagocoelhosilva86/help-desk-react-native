@@ -38,7 +38,7 @@ const Home = () => {
   const handleRecuperSenha = (data) => {
   console.log("RecuperSenha");
     console.log(data);
-    navigation.navigate("RecuperarSenha");
+    navigation.navigate("RecuperarSenhaAdm");
   }
 
   const handleConfiguracao = (data) => {
@@ -107,7 +107,7 @@ const Home = () => {
               loop
               autoPlay
             />
-            <Text style={styles.textoIcon}>Recuper Senha</Text>
+            <Text style={styles.textoIcon}>Recuperar Senha</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.containerMenu}>

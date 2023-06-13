@@ -3,12 +3,12 @@ import LottieView from "lottie-react-native";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const SenhaRecuperada = () => {
+const SenhaRecuperadAAdmin = () => {
 const navigation = useNavigation();
   function handleSingIn(data) {
     console.log("Verifique sua caixa de email ");
     console.log(data);
-    navigation.navigate("Login");
+    navigation.navigate("Home");
   }
 
   return (
@@ -19,7 +19,7 @@ const navigation = useNavigation();
       <View style={styles.containerImageEmail}>
         <LottieView
           style={styles.LottieView}
-          source={require("../../assets/imagens/email-sent")}
+          source={require("../../assets/imagens/10245-send-email.json")}
           loop
           autoPlay
         />
@@ -36,13 +36,13 @@ const navigation = useNavigation();
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     justifyContent: "center",
     height: "100%",
-    paddingTop: 30,
+    // paddingTop: 30,
   },
   containerForm: {
-    flex: 1,
+    // flex: 1,
     justifyContent: "center",
     alignItems: "center",
     borderColor: "black",
@@ -89,4 +89,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SenhaRecuperada;
+export default SenhaRecuperadAAdmin;

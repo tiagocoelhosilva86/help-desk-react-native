@@ -1,19 +1,21 @@
-import React, { useEffect } from "react";
-import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, useNavigationContainerRef } from "@react-navigation/native";
-import Home from "./screens/Home";
-import Cadastro from "./screens/Cadastro";
-import Recuperar from "./screens/Recuperar";
-import Login from "./screens/Login";
+import { createStackNavigator } from '@react-navigation/stack';
+import React, { useEffect } from "react";
+import { BackHandler } from "react-native";
 import AbrirChamado from "./screens/AbrirChamado";
 import AdicionarUsuario from "./screens/AdicionarUsuario";
-import SenhaRecuperada from "./screens/SenhaRecuperada";
-import ListaChamados from "./screens/ListaChamados";
-import RelatorioChamados from "./screens/RelatorioChamados";
+import Cadastro from "./screens/Cadastro";
 import ChamadoMsgConfirmacao from "./screens/ChamadoMsgConfir";
-import Informacao from "./screens/Informacao"
+import Home from "./screens/Home";
+import Informacao from "./screens/Informacao";
+import ListaChamados from "./screens/ListaChamados";
+import Login from "./screens/Login";
 import Popup from "./screens/Popup";
-import { BackHandler } from "react-native";
+import Recuperar from "./screens/Recuperar";
+import RecuperarSenhaAdmin from "./screens/RecuperarSenhaAdmin";
+import RelatorioChamados from "./screens/RelatorioChamados";
+import SenhaRecuperada from "./screens/SenhaRecuperada";
+import SenhaRecuperadAAdmin from "./screens/SenhaRecuperadaAdmin";
 
 const Stack = createStackNavigator();
 
@@ -45,7 +47,19 @@ function MyStack() {
         headerStyle: { backgroundColor: '#0000FF' },
          title:'HELP DESK'}}  />
 
+         <Stack.Screen name="RecuperarSenhaAdm" component={RecuperarSenhaAdmin} options={{headerMode: 'screen',
+        headerTintColor: 'white',
+        headerTitleAlign:'center',
+        headerStyle: { backgroundColor: '#0000FF' },
+         title:'HELP DESK'}}  />
+
       <Stack.Screen name="SenhaRecuperada" component={SenhaRecuperada} options={{headerMode: 'screen',
+        headerTintColor: 'white',
+        headerTitleAlign:'center',
+        headerStyle: { backgroundColor: '#0000FF' },
+         title:'HELP DESK'}} />
+
+         <Stack.Screen name="SenhaRecuperadaAdm" component={SenhaRecuperadAAdmin} options={{headerMode: 'screen',
         headerTintColor: 'white',
         headerTitleAlign:'center',
         headerStyle: { backgroundColor: '#0000FF' },
